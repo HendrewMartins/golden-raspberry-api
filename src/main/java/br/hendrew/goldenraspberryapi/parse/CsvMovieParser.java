@@ -39,31 +39,33 @@ public class CsvMovieParser {
 
             if (line.trim().isEmpty()) continue;
 
-            if (isFirstLine) {
+            if (isFirstLine && isHeader(line)) {
                 isFirstLine = false;
-                if (line.toLowerCase().contains("year") && line.toLowerCase().contains("title")) {
-                    continue;
-                }
-            }
-
-            String[] columns = line.split(";", -1);
-
-            if (columns.length < 4) {
                 continue;
             }
 
-            int year = Integer.parseInt(columns[0].trim());
-
-
-            String title = columns[1].trim();
-            String studios = columns[2].trim();
-            String producers = columns[3].trim();
-            boolean winner = columns.length > 4 && "yes".equalsIgnoreCase(columns[4].trim());
-
-            MovieDTO dto = new MovieDTO(year, title, studios, producers, winner);
+            MovieDTO dto = parseLineToDto(line);
             movies.add(movieMapper.toEntity(dto));
         }
 
         return movies;
+    }
+
+    private boolean isHeader(String line) {
+        String lower = line.toLowerCase();
+        return lower.contains("year") && lower.contains("title");
+    }
+
+    private MovieDTO parseLineToDto(String line) {
+        String[] columns = line.split(";", -1);
+        if (columns.length < 4) return null;
+
+        int year = Integer.parseInt(columns[0].trim());
+        String title = columns[1].trim();
+        String studios = columns[2].trim();
+        String producers = columns[3].trim();
+        boolean winner = columns.length > 4 && "yes".equalsIgnoreCase(columns[4].trim());
+
+        return new MovieDTO(year, title, studios, producers, winner);
     }
 }

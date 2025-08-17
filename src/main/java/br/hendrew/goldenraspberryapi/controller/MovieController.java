@@ -34,7 +34,6 @@ public class MovieController {
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Intervalos de produtores retornados com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Requisição inválida, dados incorretos"),
             @ApiResponse(responseCode = "500", description = "Erro interno ao processar a requisição")
     })
     public ResponseEntity<IntervalResponseDTO> getProducerIntervals() {

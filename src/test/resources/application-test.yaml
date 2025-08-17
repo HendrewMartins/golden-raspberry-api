@@ -1,0 +1,12 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+
+csv-movie:
+  directory: src/test/resources/simulation/Movielist.csv
+
+server:
+  servlet:
+    context-path: /golden-raspberry-api
+  port: 8081
