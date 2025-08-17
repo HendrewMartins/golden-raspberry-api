@@ -37,3 +37,6 @@ flyway:
   enabled: true
   locations: db/migration
   baseline-on-migrate: true
+
+csv-movie:
+  directory: src/main/resources/simulation/Movielist.csv

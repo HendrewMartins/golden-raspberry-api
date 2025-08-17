@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebMvcConfiguration implements WebMvcConfigurer {
-    private static final String PACKAGE = "br.hendrew.goldenraspberryapi";
+    private static final String PACKAGE = "br.hendrew.goldenraspberryapi.controller";
 
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
